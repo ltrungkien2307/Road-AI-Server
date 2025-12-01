@@ -1,0 +1,43 @@
+#requirements.txt
+# Road-AI-Server Python Dependencies
+
+# Core Framework
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# Task Queue
+celery>=5.3.0
+redis>=5.0.0
+flower>=2.0.0  # Celery monitoring UI
+
+# AI/ML
+torch>=2.0.0  # Will install latest compatible version
+torchvision>=0.15.0
+ultralytics>=8.0.0  # YOLOv8
+opencv-python>=4.8.0
+numpy>=1.24.0,<2.0.0
+Pillow>=10.0.0
+
+# Database
+supabase>=2.0.0
+psycopg2-binary>=2.9.0
+
+# Cloud Storage
+cloudinary>=1.36.0
+requests>=2.31.0
+
+# Utilities
+python-multipart>=0.0.6
+python-dotenv>=1.0.0
+python-jose[cryptography]>=3.3.0
+passlib[bcrypt]>=1.7.4
+
+# Logging & Monitoring
+loguru>=0.7.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+httpx>=0.24.0
