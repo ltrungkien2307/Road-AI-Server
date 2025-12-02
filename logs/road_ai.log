@@ -175,3 +175,64 @@ Traceback (most recent call last):
     job_id = await storage_service.create_job(
 AttributeError: 'StorageService' object has no attribute 'create_job'
 2025-12-02 18:34:19 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:35:50 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:35:50 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:35:50 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:35:50 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:35:50 | INFO     | app.main | Environment: development
+2025-12-02 18:35:50 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:38:24 | INFO     | app.main | ============================================================
+2025-12-02 18:38:24 | INFO     | app.main | 📹 NEW VIDEO PROCESSING REQUEST
+2025-12-02 18:38:24 | INFO     | app.main | ============================================================
+2025-12-02 18:38:24 | INFO     | app.main | 📹 Task ID: c372c405-beaf-4731-80c3-24317605d02e
+2025-12-02 18:38:24 | INFO     | app.main | 📹 Video URL: https://res.cloudinary.com/due9krfrv/video/upload/v1764700701/task-surveys/task-...
+2025-12-02 18:38:24 | INFO     | app.main | 📹 GPS Points: 2
+2025-12-02 18:38:24 | INFO     | app.main | 📹 Company ID: 62279e88-422d-4f89-a91f-4de1c68c4efc
+2025-12-02 18:38:24 | INFO     | app.main | 📹 Road ID: N/A
+2025-12-02 18:38:24 | INFO     | app.main | ============================================================
+2025-12-02 18:38:24 | ERROR    | app.main | ❌ Error submitting video job: 'StorageService' object has no attribute 'create_job'
+Traceback (most recent call last):
+  File "/app/app/main.py", line 145, in process_video
+    job_id = await storage_service.create_job(
+AttributeError: 'StorageService' object has no attribute 'create_job'
+2025-12-02 18:39:45 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:39:50 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:39:50 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:39:50 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:39:50 | INFO     | app.main | Environment: development
+2025-12-02 18:39:50 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:40:02 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:40:18 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:40:19 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:40:19 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:40:19 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:40:19 | INFO     | app.main | Environment: development
+2025-12-02 18:40:19 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:43:32 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:43:36 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:43:36 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:43:36 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:43:36 | INFO     | app.main | Environment: development
+2025-12-02 18:43:36 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:43:43 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:44:01 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:44:01 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:44:01 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:44:01 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:44:01 | INFO     | app.main | Environment: development
+2025-12-02 18:44:01 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:52:49 | INFO     | app.main | ============================================================
+2025-12-02 18:52:49 | INFO     | app.main | 📹 NEW VIDEO PROCESSING REQUEST
+2025-12-02 18:52:49 | INFO     | app.main | ============================================================
+2025-12-02 18:52:49 | INFO     | app.main | 📹 Task ID: c372c405-beaf-4731-80c3-24317605d02e
+2025-12-02 18:52:49 | INFO     | app.main | 📹 Video URL: https://res.cloudinary.com/due9krfrv/video/upload/v1764701566/task-surveys/task-...
+2025-12-02 18:52:49 | INFO     | app.main | 📹 GPS Points: 2
+2025-12-02 18:52:49 | INFO     | app.main | 📹 Company ID: 62279e88-422d-4f89-a91f-4de1c68c4efc
+2025-12-02 18:52:49 | INFO     | app.main | 📹 Road ID: N/A
+2025-12-02 18:52:49 | INFO     | app.main | ============================================================
+2025-12-02 18:52:49 | ERROR    | app.main | ❌ Error submitting video job: 'StorageService' object has no attribute 'create_job'
+Traceback (most recent call last):
+  File "/app/app/main.py", line 145, in process_video
+    job_id = await storage_service.create_job(
+AttributeError: 'StorageService' object has no attribute 'create_job'
+2025-12-02 18:56:13 | INFO     | app.main | 🛑 Road-AI-Server shutting down...

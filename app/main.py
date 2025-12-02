@@ -145,9 +145,9 @@ async def process_video(request: VideoProcessRequest):
         job_id = await storage_service.create_job(
             task_id=request.task_id,
             video_url=request.video_url,
-            gps_log=request.gps_log,
+            gps_log=[point.dict() for point in request.gps_log],  # ✅ Convert to dicts
             company_id=request.company_id
-        )
+)
         
         logger.info(f"✅ Job created with ID: {job_id}")
         
