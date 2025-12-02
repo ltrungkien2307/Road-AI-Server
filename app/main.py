@@ -124,9 +124,15 @@ async def process_video(request: VideoProcessRequest):
     4. Return job ID for status tracking
     """
     try:
-        logger.info(f"📹 New video processing request for task: {request.task_id}")
-        logger.info(f"   Video URL: {request.video_url}")
-        logger.info(f"   GPS points: {len(request.gps_log)}")
+        logger.info(f"{'='*60}")
+        logger.info(f"📹 NEW VIDEO PROCESSING REQUEST")
+        logger.info(f"{'='*60}")
+        logger.info(f"📹 Task ID: {request.task_id}")
+        logger.info(f"📹 Video URL: {request.video_url[:80]}...")
+        logger.info(f"📹 GPS Points: {len(request.gps_log)}")
+        logger.info(f"📹 Company ID: {request.company_id}")
+        logger.info(f"📹 Road ID: {request.road_id or 'N/A'}")
+        logger.info(f"{'='*60}")
         
         # Validate GPS log
         if not request.gps_log or len(request.gps_log) == 0:
@@ -151,7 +157,9 @@ async def process_video(request: VideoProcessRequest):
             task_id=job_id  # Use same ID for tracking
         )
         
-        logger.info(f"📤 Task queued: {task.id}")
+        logger.info(f"📤 Task queued for processing: {task.id}")
+        logger.info(f"📤 Video will be processed asynchronously")
+        logger.info(f"{'='*60}")
         
         return VideoProcessResponse(
             job_id=job_id,
@@ -242,6 +250,75 @@ async def get_task_results(task_id: str):
         raise HTTPException(
             status_code=500,
             detail=f"Failed to get task results: {str(e)}"
+        )
+
+
+@app.get("/api/ai/results/{task_id}/map")
+async def get_task_damages_for_map(task_id: str):
+    """
+    Get damages in GeoJSON format for map visualization
+    Includes image URLs and metadata
+    """
+    try:
+        from app.utils.map_utils import create_geojson_feature_collection
+        
+        damages = await storage_service.get_task_damages(task_id)
+        
+        if not damages:
+            return {
+                "type": "FeatureCollection",
+                "features": [],
+                "metadata": {
+                    "total_damages": 0,
+                    "damage_types": {},
+                    "severity_distribution": {}
+                }
+            }
+        
+        geojson = create_geojson_feature_collection(damages)
+        
+        return geojson
+        
+    except Exception as e:
+        logger.error(f"Error getting map data: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to get map data: {str(e)}"
+        )
+
+
+@app.get("/api/ai/results/{task_id}/heatmap")
+async def get_task_damages_heatmap(task_id: str):
+    """
+    Get damages in heatmap format for map visualization
+    Returns intensity-weighted points for density mapping
+    """
+    try:
+        from app.utils.map_utils import generate_heatmap_data
+        
+        damages = await storage_service.get_task_damages(task_id)
+        heatmap_data = generate_heatmap_data(damages)
+        
+        return {
+            "task_id": task_id,
+            "heatmap_data": heatmap_data,
+            "damage_count": len(damages),
+            "metadata": {
+                "format": "[lat, lon, intensity]",
+                "intensity_scale": {
+                    "critical": 1.0,
+                    "high": 0.7,
+                    "medium": 0.5,
+                    "low": 0.3
+                }
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Error getting heatmap data: {e}", exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to get heatmap data: {str(e)}"
         )
 
 

@@ -163,6 +163,60 @@ class VideoProcessor:
             return []
     
     
+    def detect_damages_batch(self, frames: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Run AI detection on multiple frames using batch processing
+        More efficient than single frame detection
+        
+        Args:
+            frames: List of frame data dicts
+            
+        Returns:
+            List of all detections from all frames
+        """
+        try:
+            if not frames:
+                return []
+            
+            # Get frame paths
+            frame_paths = [f['frame_path'] for f in frames]
+            
+            logger.info(f"Running batch detection on {len(frames)} frames")
+            
+            # Run batch detection
+            batch_detections = self.damage_detector.detect_batch(
+                image_paths=frame_paths,
+                confidence_threshold=settings.MODEL_CONFIDENCE_THRESHOLD
+            )
+            
+            # Merge results with frame metadata
+            all_detections = []
+            
+            for frame_idx, (frame_data, detections) in enumerate(zip(frames, batch_detections)):
+                for detection in detections:
+                    detection.update({
+                        'frame_number': frame_data['frame_number'],
+                        'timestamp': frame_data['timestamp'],
+                        'gps_location': frame_data.get('gps_location'),
+                        'frame_path': frame_data['frame_path']
+                    })
+                    all_detections.append(detection)
+            
+            logger.info(f"Batch detection complete: {len(all_detections)} detections found")
+            
+            return all_detections
+            
+        except Exception as e:
+            logger.error(f"Batch detection failed: {e}", exc_info=True)
+            # Fallback to single frame detection
+            logger.info("Falling back to single frame detection")
+            all_detections = []
+            for frame_data in frames:
+                detections = self.detect_damages(frame_data)
+                all_detections.extend(detections)
+            return all_detections
+    
+    
     def group_detections(
         self,
         detections: List[Dict[str, Any]]
@@ -207,7 +261,7 @@ class VideoProcessor:
         grouped_detections: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
         """
-        Create damage records in Supabase
+        Create damage records in Supabase with cropped images
         
         Args:
             grouped_detections: Grouped damage detections
@@ -220,9 +274,19 @@ class VideoProcessor:
             
             created_damages = []
             
-            for detection in grouped_detections:
+            for idx, detection in enumerate(grouped_detections, 1):
                 try:
-                    # Prepare damage data
+                    logger.info(f"Processing damage {idx}/{len(grouped_detections)}: {detection['class_name']}")
+                    
+                    # Upload detection image (crop from frame)
+                    image_url = self._upload_detection_image(detection)
+                    
+                    if image_url:
+                        logger.info(f"✅ Image uploaded: {image_url}")
+                    else:
+                        logger.warning(f"⚠️  Could not upload image for damage {idx}")
+                    
+                    # Prepare damage data with GPS coordinates and image
                     damage_data = {
                         'company_id': self.company_id,
                         'road_id': self.road_id,
@@ -233,13 +297,15 @@ class VideoProcessor:
                         'latitude': detection['gps_location']['lat'],
                         'longitude': detection['gps_location']['lon'],
                         'description': self._generate_description(detection),
-                        'image_url': self._upload_detection_image(detection),
+                        'image_url': image_url,  # Cropped image from video
                         'metadata': {
                             'confidence': detection['confidence'],
                             'frame_number': detection['frame_number'],
                             'timestamp': detection['timestamp'],
                             'bbox': detection['bbox'],
-                            'detection_count': detection.get('detection_count', 1)
+                            'detection_count': detection.get('detection_count', 1),
+                            'frame_range': detection.get('frame_range', [detection['frame_number']]),
+                            'confidence_range': detection.get('confidence_range', [detection['confidence'], detection['confidence']])
                         }
                     }
                     
@@ -247,24 +313,28 @@ class VideoProcessor:
                     damage = self.storage_service.create_damage_sync(damage_data)
                     
                     if damage:
+                        logger.info(f"✅ Damage record created: {damage['id']}")
                         created_damages.append({
                             'damage_id': damage['id'],
                             'class_name': detection['class_name'],
                             'confidence': detection['confidence'],
                             'severity': detection['severity'],
-                            'gps_location': detection['gps_location']
+                            'gps_location': detection['gps_location'],
+                            'image_url': image_url
                         })
+                    else:
+                        logger.error(f"Failed to create damage record in database")
                         
                 except Exception as e:
-                    logger.error(f"Failed to create damage record: {e}")
+                    logger.error(f"Failed to create damage record {idx}: {e}", exc_info=True)
                     continue
             
-            logger.info(f"Successfully created {len(created_damages)} damage records")
+            logger.info(f"Successfully created {len(created_damages)} damage records with images")
             
             return created_damages
             
         except Exception as e:
-            logger.error(f"Failed to create damage records: {e}")
+            logger.error(f"Failed to create damage records: {e}", exc_info=True)
             raise
     
     
@@ -285,12 +355,80 @@ class VideoProcessor:
     
     def _upload_detection_image(self, detection: Dict[str, Any]) -> Optional[str]:
         """
-        Upload detection image to Cloudinary (optional)
-        For now, returns None - implement if needed
+        Crop detection area from frame and upload to Cloudinary
+        
+        Args:
+            detection: Detection dict with frame_path, bbox, gps_location
+            
+        Returns:
+            Cloudinary URL of cropped damage image, or None if failed
         """
-        # TODO: Crop detection from frame and upload to Cloudinary
-        # This would show the exact damage area
-        return None
+        try:
+            import cv2
+            from app.utils.cloudinary import upload_image_to_cloudinary
+            
+            frame_path = detection.get('frame_path')
+            bbox = detection.get('bbox')
+            
+            if not frame_path or not bbox or not len(bbox) >= 4:
+                logger.warning(f"Missing frame or bbox for detection")
+                return None
+            
+            # Read frame
+            frame = cv2.imread(frame_path)
+            if frame is None:
+                logger.warning(f"Failed to read frame: {frame_path}")
+                return None
+            
+            # Expand bbox by 10% for context
+            x1, y1, x2, y2 = [int(x) for x in bbox[:4]]
+            width = x2 - x1
+            height = y2 - y1
+            
+            padding = int(max(width, height) * 0.1)
+            
+            x1 = max(0, x1 - padding)
+            y1 = max(0, y1 - padding)
+            x2 = min(frame.shape[1], x2 + padding)
+            y2 = min(frame.shape[0], y2 + padding)
+            
+            # Crop detection area
+            cropped = frame[y1:y2, x1:x2]
+            
+            if cropped.size == 0:
+                logger.warning("Cropped area is empty")
+                return None
+            
+            # Save cropped image to temp file
+            import tempfile
+            import os
+            
+            temp_dir = self.temp_dir / 'crops'
+            temp_dir.mkdir(exist_ok=True)
+            
+            crop_filename = f"damage_{uuid.uuid4()}.jpg"
+            crop_path = temp_dir / crop_filename
+            
+            cv2.imwrite(str(crop_path), cropped)
+            
+            # Upload to Cloudinary
+            logger.info(f"Uploading detection image: {crop_path}")
+            
+            image_url = upload_image_to_cloudinary(
+                image_path=str(crop_path),
+                folder=f"damages/{self.job_id}"
+            )
+            
+            if image_url:
+                logger.info(f"✅ Detection image uploaded: {image_url}")
+            else:
+                logger.warning("Failed to get URL from Cloudinary")
+            
+            return image_url
+            
+        except Exception as e:
+            logger.error(f"Failed to upload detection image: {e}")
+            return None
     
     
     def update_task_status(self, damages_created: List[Dict[str, Any]]):

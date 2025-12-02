@@ -1,0 +1,49 @@
+2025-12-02 17:17:23 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:17:23 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:17:23 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:17:23 | INFO     | app.main | Environment: development
+2025-12-02 17:17:23 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:17:28 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:17:28 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:17:28 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:17:28 | INFO     | app.main | Environment: development
+2025-12-02 17:17:28 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:17:32 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:18:39 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:18:51 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:18:51 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:18:51 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:18:51 | INFO     | app.main | Environment: development
+2025-12-02 17:18:51 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:21:19 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:21:25 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:25 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:25 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:21:25 | INFO     | app.main | Environment: development
+2025-12-02 17:21:25 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:21:30 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:30 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:30 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:21:30 | INFO     | app.main | Environment: development
+2025-12-02 17:21:30 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:21:34 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:34 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:34 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:21:34 | INFO     | app.main | Environment: development
+2025-12-02 17:21:34 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:21:37 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:37 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:37 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:21:37 | INFO     | app.main | Environment: development
+2025-12-02 17:21:37 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:21:40 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:40 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:21:40 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:21:40 | INFO     | app.main | Environment: development
+2025-12-02 17:21:40 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:22:13 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:22:17 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:22:17 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:22:17 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:22:17 | INFO     | app.main | Environment: development
+2025-12-02 17:22:17 | INFO     | app.main | Celery Broker: redis://localhost:6379/0

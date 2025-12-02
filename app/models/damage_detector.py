@@ -10,7 +10,8 @@ from pathlib import Path
 from typing import List, Dict, Any, Tuple
 import logging
 
-from app.config import settings, get_damage_type_name, calculate_severity
+from app.config import settings
+from app.utils.helpers import get_damage_type_name, calculate_severity
 from app.utils.logger import setup_logger
 
 logger = setup_logger(__name__)
