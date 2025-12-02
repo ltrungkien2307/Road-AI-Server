@@ -36,42 +36,60 @@ class StorageService:
     # JOB MANAGEMENT
     # ============================================================
     
-    async def create_job(
-        self,
-        task_id: str,
-        video_url: str,
-        gps_log: List[Dict],
-        company_id: str
-    ) -> str:
-        """
-        Create new processing job record
+    # app/services/storage.py
+async def create_job(
+    self,
+    task_id: str,
+    video_url: str,
+    gps_log: List[Dict],
+    company_id: str
+) -> str:
+    """
+    Create new processing job record
+    
+    Returns:
+        Job ID (UUID)
+    """
+    try:
+        # ✅ FIX: Convert GPSPoint objects to dicts before JSON serialization
+        gps_log_dicts = []
+        for point in gps_log:
+            if hasattr(point, 'dict'):  # If it's a Pydantic model
+                gps_log_dicts.append(point.dict())
+            elif isinstance(point, dict):  # If it's already a dict
+                gps_log_dicts.append(point)
+            else:
+                # Fallback: try to convert to dict
+                gps_log_dicts.append({
+                    'timestamp': getattr(point, 'timestamp', 0),
+                    'lat': getattr(point, 'lat', 0),
+                    'lon': getattr(point, 'lon', 0),
+                    'speed': getattr(point, 'speed', None),
+                    'accuracy': getattr(point, 'accuracy', None)
+                })
         
-        Returns:
-            Job ID (UUID)
-        """
-        try:
-            job_data = {
-                'task_id': task_id,
-                'video_url': video_url,
-                'gps_log': json.dumps(gps_log),
-                'company_id': company_id,
-                'status': 'queued',
-                'progress': 0,
-                'message': 'Job queued for processing',
-                'created_at': datetime.utcnow().isoformat(),
-                'updated_at': datetime.utcnow().isoformat()
-            }
-            
-            response = self.supabase.table('ai_jobs').insert(job_data).execute()
-            
-            job_id = response.data[0]['id']
-            logger.info(f"Job created: {job_id}")
-            
-            return job_id
-            
-        except Exception as e:
-            logger.error(f"Failed to create job: {e}")
-            raise
+        job_data = {
+            'task_id': task_id,
+            'video_url': video_url,
+            'gps_log': json.dumps(gps_log_dicts),  # ✅ Now it's serializable
+            'company_id': company_id,
+            'status': 'queued',
+            'progress': 0,
+            'message': 'Job queued for processing',
+            'created_at': datetime.utcnow().isoformat(),
+            'updated_at': datetime.utcnow().isoformat()
+        }
+        
+        response = self.supabase.table('ai_jobs').insert(job_data).execute()
+        
+        job_id = response.data[0]['id']
+        logger.info(f"Job created: {job_id}")
+        
+        return job_id
+        
+    except Exception as e:
+        logger.error(f"Failed to create job: {e}")
+        raise
     
     
     async def get_job(self, job_id: str) -> Optional[Dict[str, Any]]:

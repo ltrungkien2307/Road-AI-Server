@@ -47,3 +47,131 @@
 2025-12-02 17:22:17 | INFO     | app.main | 🚀 Road-AI-Server starting up...
 2025-12-02 17:22:17 | INFO     | app.main | Environment: development
 2025-12-02 17:22:17 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:36:00 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:36:09 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:09 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:09 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:36:09 | INFO     | app.main | Environment: development
+2025-12-02 17:36:09 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:36:23 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:36:35 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:35 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:35 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:36:35 | INFO     | app.main | Environment: development
+2025-12-02 17:36:35 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:36:46 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:46 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:46 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:36:46 | INFO     | app.main | Environment: development
+2025-12-02 17:36:46 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:36:47 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:36:57 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:57 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:36:57 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:36:57 | INFO     | app.main | Environment: development
+2025-12-02 17:36:57 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:46:34 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 17:46:54 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:46:54 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:46:54 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:46:54 | INFO     | app.main | Environment: development
+2025-12-02 17:46:54 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:47:08 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:47:08 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:47:08 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:47:08 | INFO     | app.main | Environment: development
+2025-12-02 17:47:08 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:47:15 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:47:15 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:47:15 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:47:15 | INFO     | app.main | Environment: development
+2025-12-02 17:47:15 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 17:59:32 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:59:32 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:59:32 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 17:59:32 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 17:59:32 | INFO     | app.main | Environment: development
+2025-12-02 17:59:32 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:05:27 | INFO     | app.main | ============================================================
+2025-12-02 18:05:27 | INFO     | app.main | 📹 NEW VIDEO PROCESSING REQUEST
+2025-12-02 18:05:27 | INFO     | app.main | ============================================================
+2025-12-02 18:05:27 | INFO     | app.main | 📹 Task ID: c372c405-beaf-4731-80c3-24317605d02e
+2025-12-02 18:05:27 | INFO     | app.main | 📹 Video URL: https://res.cloudinary.com/due9krfrv/video/upload/v1764698724/task-surveys/task-...
+2025-12-02 18:05:27 | INFO     | app.main | 📹 GPS Points: 2
+2025-12-02 18:05:27 | INFO     | app.main | 📹 Company ID: 62279e88-422d-4f89-a91f-4de1c68c4efc
+2025-12-02 18:05:27 | INFO     | app.main | 📹 Road ID: N/A
+2025-12-02 18:05:27 | INFO     | app.main | ============================================================
+2025-12-02 18:05:27 | ERROR    | app.services.storage | Failed to create job: Object of type GPSPoint is not JSON serializable
+2025-12-02 18:05:27 | ERROR    | app.main | ❌ Error submitting video job: Object of type GPSPoint is not JSON serializable
+Traceback (most recent call last):
+  File "/app/app/main.py", line 145, in process_video
+    job_id = await storage_service.create_job(
+  File "/app/app/services/storage.py", line 56, in create_job
+    'gps_log': json.dumps(gps_log),
+  File "/usr/local/lib/python3.10/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type GPSPoint is not JSON serializable
+2025-12-02 18:08:22 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:08:28 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:08:28 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:08:28 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:08:28 | INFO     | app.main | Environment: development
+2025-12-02 18:08:28 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:08:33 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:08:38 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:08:38 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:08:38 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:08:38 | INFO     | app.main | Environment: development
+2025-12-02 18:08:38 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:11:04 | INFO     | app.main | ============================================================
+2025-12-02 18:11:04 | INFO     | app.main | 📹 NEW VIDEO PROCESSING REQUEST
+2025-12-02 18:11:04 | INFO     | app.main | ============================================================
+2025-12-02 18:11:04 | INFO     | app.main | 📹 Task ID: c372c405-beaf-4731-80c3-24317605d02e
+2025-12-02 18:11:04 | INFO     | app.main | 📹 Video URL: https://res.cloudinary.com/due9krfrv/video/upload/v1764699062/task-surveys/task-...
+2025-12-02 18:11:04 | INFO     | app.main | 📹 GPS Points: 2
+2025-12-02 18:11:04 | INFO     | app.main | 📹 Company ID: 62279e88-422d-4f89-a91f-4de1c68c4efc
+2025-12-02 18:11:04 | INFO     | app.main | 📹 Road ID: N/A
+2025-12-02 18:11:04 | INFO     | app.main | ============================================================
+2025-12-02 18:11:04 | ERROR    | app.services.storage | Failed to create job: Object of type GPSPoint is not JSON serializable
+2025-12-02 18:11:04 | ERROR    | app.main | ❌ Error submitting video job: Object of type GPSPoint is not JSON serializable
+Traceback (most recent call last):
+  File "/app/app/main.py", line 145, in process_video
+    job_id = await storage_service.create_job(
+  File "/app/app/services/storage.py", line 56, in create_job
+    'gps_log': json.dumps(gps_log),
+  File "/usr/local/lib/python3.10/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/local/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type GPSPoint is not JSON serializable
+2025-12-02 18:29:56 | INFO     | app.main | 🛑 Road-AI-Server shutting down...
+2025-12-02 18:30:02 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:30:02 | INFO     | app.services.storage | ✅ Supabase client initialized
+2025-12-02 18:30:02 | INFO     | app.main | 🚀 Road-AI-Server starting up...
+2025-12-02 18:30:02 | INFO     | app.main | Environment: development
+2025-12-02 18:30:02 | INFO     | app.main | Celery Broker: redis://localhost:6379/0
+2025-12-02 18:34:04 | INFO     | app.main | ============================================================
+2025-12-02 18:34:04 | INFO     | app.main | 📹 NEW VIDEO PROCESSING REQUEST
+2025-12-02 18:34:04 | INFO     | app.main | ============================================================
+2025-12-02 18:34:04 | INFO     | app.main | 📹 Task ID: c372c405-beaf-4731-80c3-24317605d02e
+2025-12-02 18:34:04 | INFO     | app.main | 📹 Video URL: https://res.cloudinary.com/due9krfrv/video/upload/v1764700443/task-surveys/task-...
+2025-12-02 18:34:04 | INFO     | app.main | 📹 GPS Points: 2
+2025-12-02 18:34:04 | INFO     | app.main | 📹 Company ID: 62279e88-422d-4f89-a91f-4de1c68c4efc
+2025-12-02 18:34:04 | INFO     | app.main | 📹 Road ID: N/A
+2025-12-02 18:34:04 | INFO     | app.main | ============================================================
+2025-12-02 18:34:04 | ERROR    | app.main | ❌ Error submitting video job: 'StorageService' object has no attribute 'create_job'
+Traceback (most recent call last):
+  File "/app/app/main.py", line 145, in process_video
+    job_id = await storage_service.create_job(
+AttributeError: 'StorageService' object has no attribute 'create_job'
+2025-12-02 18:34:19 | INFO     | app.main | 🛑 Road-AI-Server shutting down...

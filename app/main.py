@@ -151,9 +151,23 @@ async def process_video(request: VideoProcessRequest):
         
         logger.info(f"✅ Job created with ID: {job_id}")
         
+        # Convert Pydantic models to dict for Celery serialization
+        # GPSPoint models need to be converted to plain dicts
+        request_dict = request.dict()
+        request_dict['gps_log'] = [
+            {
+                'timestamp': point.timestamp,
+                'lat': point.lat,
+                'lon': point.lon,
+                'speed': point.speed,
+                'accuracy': point.accuracy,
+            }
+            for point in request.gps_log
+        ]
+        
         # Queue Celery task (async processing)
         task = process_video_task.apply_async(
-            args=[job_id, request.dict()],
+            args=[job_id, request_dict],
             task_id=job_id  # Use same ID for tracking
         )
         

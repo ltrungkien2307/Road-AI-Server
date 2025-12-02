@@ -1,7 +1,6 @@
 # docker-compose.yml
 # Docker Compose setup for Road-AI-Server
 
-version: '3.8'
 
 services:
   # Redis (Message Broker + Cache)
